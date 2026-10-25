@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.realestate.auth.Login
 import com.example.realestate.auth.Register
 
 @Composable
@@ -23,6 +24,10 @@ fun RootNav(innerPadding: PaddingValues) {
 
         composable(Screens.Register.route){
             Register(rootNavController)
+        }
+
+        composable(Screens.Login.route){
+            Login(rootNavController)
         }
 
     }

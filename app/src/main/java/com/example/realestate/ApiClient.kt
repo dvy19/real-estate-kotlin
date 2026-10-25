@@ -1,6 +1,7 @@
 package com.example.realestate
 
 import com.example.realestate.auth.AuthInterface
+import com.example.realestate.ml.MLInterface
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,6 +32,11 @@ Therefore, it works with val but not var.
  */
     val authApi: AuthInterface by lazy{
         retrofit.create(AuthInterface::class.java)
+    }
+
+    val mlApi: MLInterface by lazy{
+        retrofit.create(MLInterface::class.java)
+
     }
 
 }

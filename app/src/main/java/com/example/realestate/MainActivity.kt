@@ -31,5 +31,11 @@ class MainActivity : ComponentActivity() {
 sealed class Screens(val route:String){
 
     data object Register:Screens("register")
+    data object Login:Screens("login")
+    data object HomeScreen:Screens("home")
+    data object ProfileScreen:Screens("profile")
+    data object HousePricePredictionScreen:Screens("house_price_prediction")
+
+
 
 }

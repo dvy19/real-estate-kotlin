@@ -177,7 +177,7 @@ fun Register(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                TextButton(onClick = {  }) {
+                TextButton(onClick = { rootNavController.navigate("login") }) {
                     Text(
                         text = "Login",
                         style = MaterialTheme.typography.bodyMedium,
