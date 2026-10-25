@@ -13,6 +13,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @Composable
@@ -23,6 +24,11 @@ fun Register(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+
+    val viewModel:AuthVM= viewModel()
+
+    val registerState by viewModel.registerState.collectAsState()
+
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -104,7 +110,7 @@ fun Register(
                     .padding(top = 4.dp),
                 contentAlignment = Alignment.CenterEnd
             ) {
-                TextButton(onClick = onForgotPasswordClicked) {
+                TextButton(onClick = {  }) {
                     Text(
                         text = "Forgot Password?",
                         style = MaterialTheme.typography.bodySmall,
@@ -117,16 +123,45 @@ fun Register(
 
             // Submit Button
             Button(
-                onClick = { onSubmitClicked(name, email, password) },
+                onClick = {
+                    viewModel.register(SignupRequest(name,email,"user",password))
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = MaterialTheme.shapes.medium
             ) {
-                Text(
-                    text = "Submit",
-                    style = MaterialTheme.typography.bodyLarge
-                )
+                when(val state=registerState){
+                    is RegisterState.Empty -> {
+                        Text(
+                            text = "Register",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                    is RegisterState.Loading -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            strokeWidth = 2.dp
+                        )
+                    }
+                    is RegisterState.Success -> {
+                        Text(
+                            text = "Success",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                    is RegisterState.Error -> {
+                        Text(
+                            text = "Please Try Again",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                    else -> {}
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -142,7 +177,7 @@ fun Register(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                TextButton(onClick = onLoginClicked) {
+                TextButton(onClick = {  }) {
                     Text(
                         text = "Login",
                         style = MaterialTheme.typography.bodyMedium,
@@ -151,5 +186,7 @@ fun Register(
                 }
             }
         }
+
+
     }
 }
