@@ -38,4 +38,19 @@ data class PredictPriceResponse(
 )
 
 
+data class RagMsgReq(
+    var question:String
+)
+
+data class RagChatResponse(
+    val message: String,
+    val data: RagChat
+)
+
+data class RagChat(
+    val _id: String,
+    val user: String,
+    val question: String,
+    val answer: String
+)
 

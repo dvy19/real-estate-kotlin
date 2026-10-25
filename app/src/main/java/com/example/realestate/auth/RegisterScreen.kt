@@ -124,7 +124,9 @@ fun Register(
             // Submit Button
             Button(
                 onClick = {
-                    viewModel.register(SignupRequest(name,email,"user",password))
+                    //viewModel.register(SignupRequest(name,email,"user",password))
+
+                    rootNavController.navigate("main")
                 },
                 modifier = Modifier
                     .fillMaxWidth()

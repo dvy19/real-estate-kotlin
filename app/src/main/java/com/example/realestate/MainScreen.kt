@@ -13,6 +13,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.realestate.ml.HousePricePredictionScreen
 import com.example.realestate.screens.HomeScreen
+import com.example.realestate.screens.RagChatScreen
 
 
 @Composable
@@ -45,6 +46,11 @@ fun MainScreen(
             composable(Screens.HousePricePredictionScreen.route) {
                 HousePricePredictionScreen(mainNavController)
             }
+
+            composable(Screens.RagChatScreen.route) {
+                RagChatScreen(mainNavController)
+            }
+
 
 
         }

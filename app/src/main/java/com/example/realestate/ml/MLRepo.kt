@@ -11,4 +11,14 @@ class MLRepo {
 
         return ApiClient.mlApi.predictPrice(req)
     }
+
+    val token="abcd"
+
+    suspend fun sendRagMsg(request:RagMsgReq):Response<RagChatResponse>{
+
+        return ApiClient.mlApi.sendRagMsg(
+            "Bearer ${token}",
+            request
+        )
+    }
 }

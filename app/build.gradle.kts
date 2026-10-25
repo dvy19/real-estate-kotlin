@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-
+    // AndroidX & Compose (managed via Version Catalog or BOM)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -49,6 +49,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // Material Icons (tied to Compose BOM)
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,28 +62,20 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Navigation Compose — pinned to avoid navigationevent SDK 36 requirement
+    // Navigation Compose (Pinned safely below API 36 requirements)
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // Retrofit
+    // Network & Parsing (Retrofit, OkHttp, Gson)
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-
-    // OkHttp + Logging Interceptor
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.google.code.gson:gson:2.11.0")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
-    // Coil
+    // Image Loading
     implementation("io.coil-kt:coil-compose:2.7.0")
-
-    implementation("com.google.code.gson:gson:2.11.0")
-
-
-    // ... other dependencies
-    implementation("androidx.compose.material:material-icons-extended")
-
 }

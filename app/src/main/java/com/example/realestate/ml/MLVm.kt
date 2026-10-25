@@ -14,10 +14,22 @@ sealed class HousePriceState{
     class Success(val data: PredictPriceResponse): HousePriceState()
     class Error(val message: String): HousePriceState()
 }
+
+sealed class RagChatReq{
+    object Empty: RagChatReq()
+    object Loading: RagChatReq()
+    class Success(val data: RagChatResponse): RagChatReq()
+    class Error(val message: String): RagChatReq()
+}
+
 class MLVm ():ViewModel() {
 
     val _housePriceState = MutableStateFlow<HousePriceState>(HousePriceState.Empty)
     val housePriceState: StateFlow<HousePriceState> = _housePriceState.asStateFlow()
+
+    val _ragChatState = MutableStateFlow<RagChatReq>(RagChatReq.Empty)
+    val ragChatState: StateFlow<RagChatReq> = _ragChatState.asStateFlow()
+
 
     val repo=MLRepo()
 
@@ -45,6 +57,30 @@ class MLVm ():ViewModel() {
 
 
 
+    }
+
+    fun sendRagMsg(req: RagMsgReq){
+
+        _ragChatState.value = RagChatReq.Loading
+
+        viewModelScope.launch {
+
+            try{
+                val response = repo.sendRagMsg(req)
+
+                if(response.isSuccessful && response.body()!=null){
+                    _ragChatState.value = RagChatReq.Success(response.body()!!)
+                }
+
+                else{
+                    _ragChatState.value = RagChatReq.Error(response.message())
+                }
+            }
+            catch (e:Exception){
+                _ragChatState.value = RagChatReq.Error(e.message.toString())
+            }
+
+        }
     }
 
 

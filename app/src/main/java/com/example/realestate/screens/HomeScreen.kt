@@ -35,6 +35,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.realestate.cards.AiPropertyAgentCard
+import com.example.realestate.cards.BrokerLazyRow
 import com.example.realestate.cards.HousePredictionCard
 import kotlinx.coroutines.launch
 
@@ -50,6 +52,7 @@ fun HomeScreen(
     )
 
     val scope = rememberCoroutineScope()
+
 
 
     val context = LocalContext.current
@@ -249,6 +252,25 @@ fun HomeScreen(
                     HousePredictionCard(
                         onCardClicked = {}
                     )
+                }
+
+                item{
+                    AiPropertyAgentCard (
+                        onCardClicked = {}
+                    )
+                }
+
+                item{
+                    /*
+                    BrokerLazyRow(
+                        brokers = sampleBrokers,
+                        onBrokerClicked = { broker ->
+                            // Handle broker click action
+                        }
+                    )
+
+                     */
+
                 }
 
             }
