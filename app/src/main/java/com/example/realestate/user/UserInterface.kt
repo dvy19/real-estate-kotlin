@@ -1,13 +1,23 @@
 package com.example.realestate.user
 
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface UserInterface
 {
 
     @GET("broker/get-all-brokers")
-    suspend fun getAllBrokers(): Response<BrokerResponse>
+    suspend fun getAllBrokers(): Response<AllBrokerResponse>
+
+    suspend fun getBrokerAvailability(
+        @Path("id") brokerId:String
+    ) : Response<Availability>
+
+    suspend fun getBrokerProfile(
+        @Path("id") id:String
+    ) : Response<BrokerProfileResponse>
 
 
 }

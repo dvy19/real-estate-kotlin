@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.realestate.ml.HousePricePredictionScreen
+import com.example.realestate.screens.BrokerDetailsScreen
 import com.example.realestate.screens.HomeScreen
 import com.example.realestate.screens.RagChatScreen
 
@@ -51,6 +52,31 @@ fun MainScreen(
                 RagChatScreen(mainNavController)
             }
 
+            /*
+            composable<Screens.BrokerDetailsScreen> { backStackEntry ->
+                // Extract the data class passed via navigation
+                val args = backStackEntry.toRoute<Screens.BrokerDetailsScreen>()
+
+                // Pass the brokerId to your Screen Composable
+                BrokerDetailsScreenContent(
+                    brokerId = args.brokerId,
+                    onBackClicked = { navController.popBackStack() }
+                )
+            }
+
+             */
+
+            composable(Screens.BrokerDetailsScreen.route){ backStackEntry ->
+                val brokerId = backStackEntry.arguments?.getString("id")
+
+                if (brokerId != null) {
+                    BrokerDetailsScreen(
+                        id = brokerId,
+                        mainNavController = mainNavController
+                    )
+                }
+
+            }
 
 
         }

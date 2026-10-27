@@ -37,6 +37,8 @@ sealed class Screens(val route:String){
     data object HousePricePredictionScreen:Screens("house_price_prediction")
     data object RagChatScreen:Screens("rag_chat")
 
+    data object BrokerDetailsScreen:Screens("broker_details/{id}")
+
 
 
 

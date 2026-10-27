@@ -21,19 +21,24 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.example.realestate.user.BrokerResponse
+import com.example.realestate.user.BrokerData
 
 @Composable
 fun BrokerCard(
-    broker: BrokerResponse,
+    broker: BrokerData,
     cardWidth: androidx.compose.ui.unit.Dp,
-    onBrokerClicked: () -> Unit
+    mainNavController: NavController,
 ) {
     Card(
         modifier = Modifier
             .width(cardWidth)
-            .clickable(onClick = onBrokerClicked),
+            .clickable(onClick = {
+                mainNavController.navigate()
+            }),
+
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
@@ -136,7 +141,7 @@ fun BrokerCard(
 
 @Composable
 fun BrokerLazyRow(
-    brokers: List<BrokerResponse>,
+    brokers: List<BrokerData>,
     onBrokerClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -156,7 +161,7 @@ fun BrokerLazyRow(
             BrokerCard(
                 broker = broker,
                 cardWidth = cardWidth,
-                onBrokerClicked = {  }
+                mainNavController = rememberNavController()
             )
         }
     }

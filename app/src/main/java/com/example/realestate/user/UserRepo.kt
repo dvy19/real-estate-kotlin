@@ -11,4 +11,11 @@ class UserRepo {
         return api.getAllBrokers()
     }
 
+    suspend fun getBrokerProfile(id:String): Response<BrokerResponse>{
+        return api.getBrokerProfile(id)
+    }
+
+    suspend fun getBrokerAvailability(id:String): Response<Availability>{
+        return api.getBrokerAvailability(id)
+    }
 }
