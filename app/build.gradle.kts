@@ -53,6 +53,14 @@ dependencies {
     // Material Icons (tied to Compose BOM)
     implementation("androidx.compose.material:material-icons-extended")
 
+
+
+    implementation("io.socket:socket.io-client:2.1.2") {
+        // Exclude 'org.json' because Android already provides it natively
+        exclude(group = "org.json", module = "json")
+    }
+
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

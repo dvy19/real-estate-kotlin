@@ -54,7 +54,7 @@ class UserVM():ViewModel()
             try{
                 val response = repo.getBrokers()
                 if(response.isSuccessful && response.body()!=null){
-                    _getBrokersState.value = GetBrokersState.Success(response.body())
+                    _getBrokersState.value = GetBrokersState.Success(response.body()!!)
                 }
 
                 else{
@@ -74,7 +74,7 @@ class UserVM():ViewModel()
                 val response = repo.getBrokerProfile(id)
 
                 if (response.isSuccessful && response.body() != null) {
-                    _getBrokerProfileState.value = GetBrokerProfileState.Success(response.body()!!)
+                    _getBrokerProfileState.value = GetBrokerProfileState.Success(response.body()!!.broker)
                 }
                 else {
                     _getBrokerProfileState.value = GetBrokerProfileState.Error(response.message())

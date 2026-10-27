@@ -47,7 +47,7 @@ data class ScheduleData(
 )
 
 data class AppointmentRequest(
-    var broker:Int,
+    var broker:String,
     var startTime:String,
     var endTime:String,
     var appointmentDate:String,

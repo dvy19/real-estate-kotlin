@@ -7,15 +7,24 @@ class UserRepo {
 
     val api= ApiClient.userApi
 
-    suspend fun getBrokers(): Response<BrokerResponse>{
+    val token=""
+
+    suspend fun getBrokers(): Response<AllBrokerResponse>{
         return api.getAllBrokers()
     }
 
-    suspend fun getBrokerProfile(id:String): Response<BrokerResponse>{
+    suspend fun getBrokerProfile(id:String): Response<BrokerProfileResponse>{
         return api.getBrokerProfile(id)
     }
 
     suspend fun getBrokerAvailability(id:String): Response<Availability>{
         return api.getBrokerAvailability(id)
+    }
+
+    suspend fun createBrokerAppointment(request: AppointmentRequest): Response<AppointmentResponse>{
+        return api.createBrokerAppointment(
+            "Bearer ${token}",
+            request = request
+        )
     }
 }
